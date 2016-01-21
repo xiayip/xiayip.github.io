@@ -199,46 +199,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>事情的起因是阿黄给我的一条微信分享，内容是通过分享给好友，好友帮忙砍价最后免费获得iWatch这样。</p>
-<p><img src="http://7xjmqq.com1.z0.glb.clouddn.com/1.png" alt="image"><img src="http://7xjmqq.com1.z0.glb.clouddn.com/2.png" alt="image"><br><img src="http://7xjmqq.com1.z0.glb.clouddn.com/3.png" alt="image"><img src="http://7xjmqq.com1.z0.glb.clouddn.com/4.png" alt="image"></p>
-<p>其实这样的砍价活动很多，没太注意就随手点了，但是后来发现网页的漏洞很多（同时也提供给大家一些辨别真假的tips）：</p>
-<ul>
-<li><p>首先网页由 www.nurenbang.net 提供。。。“nu人帮”？难道是我的拼音是体育老师教的？  <img src="http://" alt="image"></p>
-</li>
-<li><p>其次，活动规则里也没有提示任何主办方信息，难道是低调的霸道总裁？  <img src="http://" alt="image"></p>
-</li>
-<li><p>最后，下方的“越.来.越.棒”是什么鬼，小朋友能看吗？  <img src="http://" alt="image"></p>
-</li>
-</ul>
-<p>于是推测这其实是一场阴（wan）谋（xiao）；<br>闲着没事就自己模拟了一个“砍价算法”：</p>
-<pre><code>int RandomNum(int a,int b){ //产生介于a，b之间的随机数
-    int c;
-    srand((unsigned) time(NULL)); //用时间做种，产生随机数
-    c = rand() % (b - a) + 1 ;
-    return c;
-}
-int main(int argc, const char * argv[]) {
-    int p = 2986;
-    int gap,i = 0;
-    double GapPos = 0.96;
-    while (p &gt; 0) {
-        gap = (int)(GapPos * p);
-        p = p - RandomNum(gap,p);
-        printf(&quot;%d &quot;, p);
-        i += 1;
-    }
-    printf(&quot;点击次数：%d&quot;,i);
-    return 0;
-}
-</code></pre><p>执行之后的效果如图：  <img src="http://" alt="image"></p>
-<p>上面的GapPos是一个分割的断点，每次随机数的范围由GapPos和当前的价格（p）的距离决定，这样就可以营造出一种错觉。一开始砍价很快，100一次，50一次，到后面随着GapPos和p之间距离的减小，每次的砍价价格越小，直到后面每次只能扣1块钱（这里只关注整数的情况，后面会讨论）。</p>
-<p>GapPos选取的不同意味着金额减小的速度，GapPos越大，那么金额减小的速度就越慢，需要点击的次数就越多。</p>
-<p>那么当GapPos为0.95时，最佳情况运行次数为：</p>
-<pre><code>log_0.95⁡〖1/2986〗 ≈ 156 次
-</code></pre><p>也就是说运气最好也要156个人点击才能使价格为0。增大GapPos会使得运行次数增大，但是每一次砍价的金额会变小，可能就会影响用户体验，别人一下子就看出是假的。每次砍的过大可能导致传播的深度过小。若将GapPos改为动态的变量效果还会好很多。<br>那么问题来了，由于这里使用的都是整数，假设每一次最少砍去“1元”，那么总会有一天使得价格达到“0”，后来再次进入该页面时，价格已经变成了负数。。。</p>
-<p><img src="http://" alt="image"></p>
-<p>#总结<br>整个流程没有“关注xx公众号”环节，所以目测就是为了传播下面的那则“越来越棒，一晚三次”的广告吧（不得不说太拼了）。。。<br>另外里面还有填写电话，姓名，住址的环节，可能个人信息还会被存档。所以大家还是不要去贪图小便宜而把自己的个人信息泄露了。。。</p>
-
+        <p>##起因<br>事情的起因是阿黄给我的一条微信分享，内容是通过分享给好友，好友帮忙砍价最后免费获得iWatch。<br>
       
     </div>
     
@@ -251,6 +212,10 @@ int main(int argc, const char * argv[]) {
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/21/阿黄的中奖梦/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
