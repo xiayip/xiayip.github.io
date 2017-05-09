@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/09/一起做RGB-D-SLAM-with-Python/index.html">
 <meta property="og:site_name" content="Xiayip的博客">
 <meta property="og:description" content="我来挖坑了。。。">
-<meta property="og:updated_time" content="2017-05-09T14:59:20.000Z">
+<meta property="og:updated_time" content="2017-05-09T15:14:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起做RGB-D SLAM with Python">
 <meta name="twitter:description" content="我来挖坑了。。。">
@@ -163,7 +163,7 @@
 <p>我来挖坑了。。。</p>
 </blockquote>
 <a id="more"></a>
-<p>##前言<br>最近学习SLAM，首先推荐一下清华高翔博士的<a href="http://www.cnblogs.com/gaoxiang12/p/4633316.html" target="_blank" rel="external">博客</a>，里面涵盖了SLAM的许多数学基础以及实践过程。<br>其中的“一起做”系列堪称学习SLAM的经典教程，作为Python爱好者，于是尝试了一下Python下的一些SLAM开发，首先声明：</p>
+<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>最近学习SLAM，首先推荐一下清华高翔博士的<a href="http://www.cnblogs.com/gaoxiang12/p/4633316.html" target="_blank" rel="external">博客</a>，里面涵盖了SLAM的许多数学基础以及实践过程。<br>其中的“一起做”系列堪称学习SLAM的经典教程，作为Python爱好者，于是尝试了一下Python下的一些SLAM开发，首先声明：</p>
 <blockquote>
 <p>Python下的SLAM开发从目前来看还是<strong>天坑</strong>，本文只是闲暇之余的一些尝试，希望在这方面做长远计划的早点跑去学C++😂</p>
 </blockquote>
@@ -172,7 +172,7 @@
 <li>很多C++下的开源库并没有提供对Python的支持，光是找库就花光了我所有的运气。</li>
 <li>当前C++开发的SLAM尚不能完全满足实时性的要求，Python的效率只会更低，因此短期内Python下的SLAM开发还有很多的路要走。</li>
 </ul>
-<p>##SLAM资源<br>关于slam的简介这里就不再赘述，参考高翔的博客和各种wiki  </p>
+<h2 id="SLAM_u8D44_u6E90"><a href="#SLAM_u8D44_u6E90" class="headerlink" title="SLAM资源"></a>SLAM资源</h2><p>关于slam的简介这里就不再赘述，参考高翔的博客和各种wiki  </p>
 <p>在这里再分享一些本人学习SLAM的资源:</p>
 <ul>
 <li><p>微信号：泡泡机器人，还有经常会推送一些SLAM方面的干货</p>
@@ -186,7 +186,7 @@
 <li><p>在线课程：<a href="https://www.youtube.com/playlist?list=PLTBdjV_4f-EJn6udZ34tht9EVIW7lbeo4" target="_blank" rel="external">TUM的MVG课程</a>(需翻墙)、<a href="http://open.163.com/movie/2008/11/3/J/M6TN5NEEU_M6TN61B3J.html" target="_blank" rel="external">Stanford的Robotics课程</a>(以机器人运动学为主，可以作为SLAM在机器人应用方面的补充)</p>
 </li>
 </ul>
-<p>##环境搭建<br>由于我的Mac的空间有限（学校的电脑又太垃圾），我的实验环境是在Mac下搭建，Linux环境的搭建与其大体相似。</p>
+<h2 id="u73AF_u5883_u642D_u5EFA"><a href="#u73AF_u5883_u642D_u5EFA" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>由于我的Mac的空间有限（学校的电脑又太垃圾），我的实验环境是在Mac下搭建，Linux环境的搭建与其大体相似。</p>
 <ol>
 <li><p>opencv：</p>
 <p> opencv采用的是3.2版本<br> Mac下可以使用:</p>
@@ -216,8 +216,7 @@
  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pcl</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>##坑</p>
-<ol>
+<h2 id="u5751"><a href="#u5751" class="headerlink" title="坑"></a>坑</h2><ol>
 <li><p>安装好pcl之后兴高采烈地打开pcl_viewer看看效果，发现<code>command not found</code>，找了许久才发现pcl_viewer被藏在了</p>
 <blockquote>
 <p>/usr/local/Cellar/pcl/1.8.0_6/pcl_viewer.app/Contents/MacOS</p>
