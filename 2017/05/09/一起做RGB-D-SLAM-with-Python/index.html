@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>一起做RGB-D SLAM with Python | Xiayip的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="我来挖坑了。。。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一起做RGB-D SLAM with Python">
 <meta property="og:url" content="http://yoursite.com/2017/05/09/一起做RGB-D-SLAM-with-Python/index.html">
 <meta property="og:site_name" content="Xiayip的博客">
-<meta property="og:description">
-<meta property="og:updated_time" content="2017-05-09T05:41:34.000Z">
+<meta property="og:description" content="我来挖坑了。。。">
+<meta property="og:updated_time" content="2017-05-09T14:59:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起做RGB-D SLAM with Python">
-<meta name="twitter:description">
+<meta name="twitter:description" content="我来挖坑了。。。">
   
     <link rel="alternative" href="/atom.xml" title="Xiayip的博客" type="application/atom+xml">
   
@@ -159,7 +159,80 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>我来挖坑了。。。</p>
+</blockquote>
+<a id="more"></a>
+<p>##前言<br>最近学习SLAM，首先推荐一下清华高翔博士的<a href="http://www.cnblogs.com/gaoxiang12/p/4633316.html" target="_blank" rel="external">博客</a>，里面涵盖了SLAM的许多数学基础以及实践过程。<br>其中的“一起做”系列堪称学习SLAM的经典教程，作为Python爱好者，于是尝试了一下Python下的一些SLAM开发，首先声明：</p>
+<blockquote>
+<p>Python下的SLAM开发从目前来看还是<strong>天坑</strong>，本文只是闲暇之余的一些尝试，希望在这方面做长远计划的早点跑去学C++😂</p>
+</blockquote>
+<p>原因如下:</p>
+<ul>
+<li>很多C++下的开源库并没有提供对Python的支持，光是找库就花光了我所有的运气。</li>
+<li>当前C++开发的SLAM尚不能完全满足实时性的要求，Python的效率只会更低，因此短期内Python下的SLAM开发还有很多的路要走。</li>
+</ul>
+<p>##SLAM资源<br>关于slam的简介这里就不再赘述，参考高翔的博客和各种wiki  </p>
+<p>在这里再分享一些本人学习SLAM的资源:</p>
+<ul>
+<li><p>微信号：泡泡机器人，还有经常会推送一些SLAM方面的干货</p>
+</li>
+<li><p>博客：<a href="http://www.cnblogs.com/gaoxiang12/p/4633316.html" target="_blank" rel="external">半闲居士</a></p>
+</li>
+<li><p>github：<a href="https://github.com/tzutalin/awesome-visual-slam" target="_blank" rel="external">awesome-visual-slam</a>，这里各种干货，够学很久</p>
+</li>
+<li><p>书籍：Multiple View Geometry in Computer Vision(SLAM圣经)、视觉SLAM十四讲（高翔）、</p>
+</li>
+<li><p>在线课程：<a href="https://www.youtube.com/playlist?list=PLTBdjV_4f-EJn6udZ34tht9EVIW7lbeo4" target="_blank" rel="external">TUM的MVG课程</a>(需翻墙)、<a href="http://open.163.com/movie/2008/11/3/J/M6TN5NEEU_M6TN61B3J.html" target="_blank" rel="external">Stanford的Robotics课程</a>(以机器人运动学为主，可以作为SLAM在机器人应用方面的补充)</p>
+</li>
+</ul>
+<p>##环境搭建<br>由于我的Mac的空间有限（学校的电脑又太垃圾），我的实验环境是在Mac下搭建，Linux环境的搭建与其大体相似。</p>
+<ol>
+<li><p>opencv：</p>
+<p> opencv采用的是3.2版本<br> Mac下可以使用:</p>
+<blockquote>
+<p>brew install opencv3</p>
+</blockquote>
+<p> 一键安装，homebrew会自动帮你处理好依赖项  </p>
+<p> 安装好之后如果不能在Python中import的话,就需要自己把opencv的目录添加到sys.path中，我的方法是在</p>
+<blockquote>
+<p>/usr/local/lib/python2.7/site-packages</p>
+</blockquote>
+<p> 路径中添加opencv.pth，内容是(如果不是用homebrew安装位置可能不一样)：</p>
+<blockquote>
+<p>/usr/local/Cellar/opencv3/3.2.0/lib/python2.7/site-packages</p>
+</blockquote>
+<p> 之后就可以在python中正常import</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">print</span> cv2.__version__</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>PCL<br> 依旧是：</p>
+<blockquote>
+<p>brew install pcl</p>
+</blockquote>
+<p> 中间也遇到了很多问题：libpng版本不匹配，找不到vtk(解决方法同上)等等，新问题可以留言问我。  </p>
+<p> 之后下载<a href="https://github.com/strawlab/python-pcl" target="_blank" rel="external">python-pcl</a>，运行<code>python setup.py install</code><br> 安装好之后试试</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pcl</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>##坑</p>
+<ol>
+<li><p>安装好pcl之后兴高采烈地打开pcl_viewer看看效果，发现<code>command not found</code>，找了许久才发现pcl_viewer被藏在了</p>
+<blockquote>
+<p>/usr/local/Cellar/pcl/1.8.0_6/pcl_viewer.app/Contents/MacOS</p>
+</blockquote>
+<p> 将里面的pcl_viewer复制到</p>
+<blockquote>
+<p>/usr/local/bin</p>
+</blockquote>
+</li>
+<li><p>python-pcl目前只支持xyz格式，也就是说只支持三维点的插入，并不支持rgb点云的插入，也就是说里面的点云都是没有颜色的。这里面的问题会在下一篇博客中讲到。</p>
+</li>
+</ol>
+<hr>
+<p>下一讲的内容哪个是如何从深度图中提取出三维坐标并绘制在点云上，并将多幅图拼接，在这之前你需要了解一些相机运动模型的数学基础，也就是矩阵的一些知识，这些都是通用的，高翔的博客里都有，这里就不再赘述。</p>
+
       
 
       
