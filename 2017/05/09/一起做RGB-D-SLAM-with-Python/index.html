@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/09/一起做RGB-D-SLAM-with-Python/index.html">
 <meta property="og:site_name" content="Xiayip的博客">
 <meta property="og:description" content="我来挖坑了。。。">
-<meta property="og:updated_time" content="2017-05-09T15:32:50.000Z">
+<meta property="og:updated_time" content="2017-05-09T15:39:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起做RGB-D SLAM with Python">
 <meta name="twitter:description" content="我来挖坑了。。。">
@@ -182,48 +182,37 @@
 <li>在线课程：<a href="https://www.youtube.com/playlist?list=PLTBdjV_4f-EJn6udZ34tht9EVIW7lbeo4" target="_blank" rel="external">TUM的MVG课程</a>(需翻墙)、<a href="http://open.163.com/movie/2008/11/3/J/M6TN5NEEU_M6TN61B3J.html" target="_blank" rel="external">Stanford的Robotics课程</a>(以机器人运动学为主，可以作为SLAM在机器人应用方面的补充)</li>
 </ul>
 <h2 id="u73AF_u5883_u642D_u5EFA"><a href="#u73AF_u5883_u642D_u5EFA" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>由于我的Mac的空间有限（学校的电脑又太垃圾），我的实验环境是在Mac下搭建，Linux环境的搭建与其大体相似。</p>
-<ol>
-<li><p>opencv：</p>
-<p> opencv采用的是3.2版本<br> Mac下可以使用:</p>
+<p>1.opencv：</p>
+<p>opencv采用的是3.2版本<br>Mac下可以使用:</p>
 <blockquote>
 <p>brew install opencv3</p>
 </blockquote>
-<p> 一键安装，homebrew会自动帮你处理好依赖项  </p>
-<p> 安装好之后如果不能在Python中import的话,就需要自己把opencv的目录添加到sys.path中，我的方法是在</p>
+<p>一键安装，homebrew会自动帮你处理好依赖项</p>
+<p>安装好之后如果不能在Python中import的话,就需要自己把opencv的目录添加到sys.path中，我的方法是在</p>
 <blockquote>
 <p>/usr/local/lib/python2.7/site-packages</p>
 </blockquote>
-<p> 路径中添加opencv.pth，内容是(如果不是用homebrew安装位置可能不一样)：</p>
+<p>路径中添加opencv.pth，内容是(如果不是用homebrew安装位置可能不一样)：</p>
 <blockquote>
 <p>/usr/local/Cellar/opencv3/3.2.0/lib/python2.7/site-packages</p>
 </blockquote>
-<p> 之后就可以在python中正常import</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">print</span> cv2.__version__</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>PCL<br> 依旧是：</p>
+<p>之后就可以在python中正常import</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">print</span> cv2.__version__</span><br></pre></td></tr></table></figure>
+<p>2.PCL</p>
+<p>依旧是：</p>
 <blockquote>
 <p>brew install pcl</p>
 </blockquote>
-<p> 中间也遇到了很多问题：libpng版本不匹配，找不到vtk(解决方法同上)等等，新问题可以留言问我。  </p>
-<p> 之后下载<a href="https://github.com/strawlab/python-pcl" target="_blank" rel="external">python-pcl</a>，运行<code>python setup.py install</code><br> 安装好之后试试</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pcl</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="u5751"><a href="#u5751" class="headerlink" title="坑"></a>坑</h2><ol>
-<li><p>安装好pcl之后兴高采烈地打开pcl_viewer看看效果，发现<code>command not found</code>，找了许久才发现pcl_viewer被藏在了  </p>
-<blockquote>
-<p>/usr/local/Cellar/pcl/1.8.0_6/pcl_viewer.app/Contents/MacOS</p>
-</blockquote>
-<p> 将里面的pcl_viewer复制到  </p>
+<p>中间也遇到了很多问题：libpng版本不匹配，找不到vtk(解决方法同上)等等，新问题可以留言问我。  </p>
+<p>之后下载<a href="https://github.com/strawlab/python-pcl" target="_blank" rel="external">python-pcl</a>，运行<code>python setup.py install</code><br>安装好之后试试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pcl</span><br></pre></td></tr></table></figure>
+<h2 id="u5751"><a href="#u5751" class="headerlink" title="坑"></a>坑</h2><p>1.安装好pcl之后兴高采烈地打开pcl_viewer看看效果，发现<code>command not found</code>，找了许久才发现pcl_viewer被藏在了  </p>
+<pre><code>&gt; /usr/local/Cellar/pcl/1.8.0_6/pcl_viewer.app/Contents/MacOS
+</code></pre><p>将里面的pcl_viewer复制到  </p>
 <blockquote>
 <p>/usr/local/bin</p>
 </blockquote>
-</li>
-<li><p>python-pcl目前只支持xyz格式，也就是说只支持三维点的插入，并不支持rgb点云的插入，也就是说里面的点云都是没有颜色的。这里面的问题会在下一篇博客中讲到。</p>
-</li>
-</ol>
+<p>2.python-pcl目前只支持xyz格式，也就是说只支持三维点的插入，并不支持rgb点云的插入，也就是说里面的点云都是没有颜色的。这里面的问题会在下一篇博客中讲到。</p>
 <hr>
 <p>下一讲的内容哪个是如何从深度图中提取出三维坐标并绘制在点云上，并将多幅图拼接，在这之前你需要了解一些相机运动模型的数学基础，也就是矩阵的一些知识，这些都是通用的，高翔的博客里都有，这里就不再赘述。</p>
 
